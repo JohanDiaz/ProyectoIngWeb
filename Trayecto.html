@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">﻿
+    <meta charset="utf-8">
+    <title>Trayecto</title>
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.css">
+    <style>
+      #map {
+        width:100%;
+        height: 100%;
+        margin-left:0%;
+      }
+      html, body {
+        height: 80%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="Trayecto.html">Inicio</a></li>
+      <li class="breadcrumb-item"><a href="PerfilUsuario1.html">Perfil Usuario</a></li>
+      <li class="breadcrumb-item"><a href="InicioSesion1.html">Cerrar Sesion</a></li>
+    </ol>
+  </nav>
+    <header>
+    <h1>Generar Ruta</h1>
+    </header>
+    <section>
+      <form action="Historial.html">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Historial</button>
+      </form>
+    </section>
+    <br><br>
+    <div id="map"></div>
+
+  <script>
+    var map, infoWindow;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 15
+      });
+      infoWindow = new google.maps.InfoWindow;
+
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          var lat=position.coords.latitude;
+          var lon=position.coords.longitude;
+          var LonLat=new google.maps.LatLng(lat,lon);
+          markerA = new google.maps.Marker({
+            position: LonLat,
+            title: "Tu ubicacion",
+            label: "A",
+            map: map
+          })
+          map.setCenter(LonLat);
+        }, function() {
+          handleLocationError(true, infoWindow, map.getCenter());
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+      infoWindow.setPosition(pos);
+      infoWindow.setContent(browserHasGeolocation ?
+                            'Error: The Geolocation service failed.' :
+                            'Error: Your browser doesn\'t support geolocation.');
+      infoWindow.open(map);
+    }
+
+  </script>
+     <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIGCc_ckTG-VqEtmJm1D9XV8yIEFc7nmg&callback=initMap">
+     </script>
+     <br><br><br><br><br>
+     <div class="container">
+     <footer>
+       <section class="row">
+         <section class="col-sm-12">
+           <a href="https://www.facebook.com" target="_blank">
+             <img class="imgface" align="left"src="ICONOS, IMAGENES/ICONOS/facebook.png" >
+           </a>
+
+           <a href="https://www.twitter.com" target="_blank">
+              <img class="imgtw" align="centered" src="ICONOS, IMAGENES/ICONOS/twitter2.png" >
+           </a>
+           <a href="https://www.instagram.com" target="_blank">
+           <img class="imging" align="centered" src="ICONOS, IMAGENES/ICONOS/instagram2.png"></img>
+           </a>
+
+           <a href="preguntas.html" target="_blank">
+           <img class="imgques" align="right" src="ICONOS, IMAGENES/ICONOS/question-mark.png">
+           </a>
+           </section>
+           <br><br>
+           <section class="row">
+             <section class="col-sm-6">
+               <br><br>
+               <div class="back">
+                 <h2>Contactenos</h2>
+               </div>
+             </section>
+             <section class="col-sm-6">
+               <br><br><br>
+               <div class="back" align="dropright">
+               <p class="tel">Telefono&nbsp;&nbsp;+3142637221</p>
+               </div>
+               <div class="back" align="dropright">
+                 <img class="imgtel"src="ICONOS, IMAGENES/ICONOS/phone-receiver.png" >
+               </div>
+               <div class="back" align="dropright">
+               <p class="tel2">Telefono&nbsp;&nbsp;+3173722092</p>
+               </div>
+             </section>
+           </section>
+
+       </section>
+     </footer>
+   </div>
+  </body>
+</html>
